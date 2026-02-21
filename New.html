@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia Capital - Cortes, Estilo e Atitude em Maputo</title>
+    
+    <!-- Google Fonts: Rubik Dirt (Títulos) & Montserrat (Texto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    
+    <!-- Ícones (Box Icons) -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <!-- CSS Puro -->
+    <style>
+        /* ===== VARIÁVEIS E ESTILOS GLOBAIS ===== */
+        :root {
+            --verde-escuro: #0F5C3A;
+            --verde-claro: #16a34a;
+            --branco: #ffffff;
+            --cinza-fundo: #f8f9fa;
+            --cinza-texto: #495057;
+            --preto-suave: #212529;
+
+            /* NOVAS FONTES */
+            --font-title: 'Rubik Dirt', cursive;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { 
+            scroll-behavior: smooth; 
+            zoom: 75%; /* <<< ALTERAÇÃO: Reduz o layout em 25% */
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-weight: 400;
+            background-color: var(--cinza-fundo);
+            color: var(--cinza-texto);
+        }
+
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+        }
+        
+        .section-title {
+            font-family: var(--font-title);
+            font-weight: 400; 
+            font-size: 3.8rem;
+            color: var(--preto-suave);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            text-align: center; max-width: 700px;
+            margin: 0 auto 4rem auto;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+        
+        /* ===== BOTÃO FLUTUANTE DO WHATSAPP ===== */
+        .whatsapp-float {
+            position: fixed; bottom: 1.5rem; right: 1.5rem; background-color: #25D366;
+            color: var(--branco); width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 100; transition: transform 0.3s ease;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .whatsapp-float .bx { font-size: 2.5rem; }
+
+        /* ===== HEADER ===== */
+        .site-header {
+            background-color: var(--verde-escuro); color: var(--branco); padding: 1.5rem 0;
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 50;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .header-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo {
+            font-family: var(--font-title);
+            font-weight: 400; 
+            font-size: 2.2rem;
+        }
+        .nav-desktop { display: none; }
+        .nav-desktop a {
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+        }
+        .nav-desktop a:hover { color: var(--verde-claro); }
+        .nav-mobile-btn { cursor: pointer; }
+        .nav-mobile-btn .bx { font-size: 2.5rem; }
+        
+        .mobile-menu {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background-color: var(--verde-escuro); display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 2rem; transform: translateX(-100%); transition: transform 0.3s ease-in-out; z-index: 101;
+        }
+        .mobile-menu.is-open { transform: translateX(0); }
+        .mobile-menu a { font-family: var(--font-body); font-weight:700; font-size: 1.5rem; text-transform: uppercase; color: var(--branco); }
+        
+        @media (min-width: 992px) {
+            .nav-desktop { display: flex; gap: 2rem; }
+            .nav-mobile-btn { display: none; }
+        }
+        
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;
+            color: var(--branco); padding-top: 60px; background-color: var(--verde-escuro);
+            background-image: linear-gradient(to top, rgba(15, 92, 58, 0.95), rgba(15, 92, 58, 0.6)), url('https://images.unsplash.com/photo-1599351522382-08c7951a1357?q=80&w=1974&auto=format&fit=crop');
+            background-size: cover; background-position: center;
+        }
+        .hero-content h1 {
+            font-family: var(--font-title);
+            font-weight: 400; 
+            font-size: 5rem;
+            line-height: 1.1;
+        }
+        .hero-content p { font-size: 1.2rem; margin: 1.5rem 0 2.5rem 0; font-family: var(--font-body); }
+        .hero-button {
+            background-color: var(--branco); color: var(--verde-escuro);
+            font-family: var(--font-body); font-weight: 700; font-size: 1.1rem; text-transform:uppercase; letter-spacing: 2px;
+            padding: 1.2rem 3rem; border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .hero-button:hover { background-color: #e5e7eb; transform: translateY(-3px); }
+
+        @media (min-width: 768px) {
+            .hero-content h1 { font-size: 7.5rem; }
+        }
+
+        /* ===== SEÇÕES GERAIS ===== */
+        .section { padding: 6rem 0; }
+        .bg-white { background-color: var(--branco); }
+        .bg-gray { background-color: var(--cinza-fundo); }
+
+        /* ===== ESTRUTURA DE CONTEÚDO ===== */
+        .content-grid { display: grid; gap: 5rem; align-items: center; }
+        @media (min-width: 768px) { .content-grid { grid-template-columns: 1fr 1fr; } }
+        .content-image img { border-radius: 8px; }
+        .content-text .section-title { text-align: left; }
+        .content-text p { line-height: 1.8; margin-bottom: 1.5rem; font-size: 1.1rem; }
+
+        @media (min-width: 768px) {
+            .content-grid.reverse .content-image { order: 2; }
+            .content-grid.reverse .content-text { order: 1; }
+        }
+
+        /* ===== SERVIÇOS E PREÇOS ===== */
+        .services-grid { display: grid; gap: 2.5rem; grid-template-columns: 1fr; }
+        @media (min-width: 768px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        .service-card-horizontal {
+            background-color: var(--branco); border-radius: 8px; box-shadow: 0 4px 25px rgba(0,0,0,0.07);
+            display: flex; align-items: center; gap: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; overflow: hidden;
+        }
+        .service-card-horizontal:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .service-card-image-wrapper { width: 150px; height: 180px; flex-shrink: 0; }
+        .service-card-image { width: 100%; height: 100%; object-fit: cover; }
+        .service-card-content { padding: 1.5rem 2rem 1.5rem 0; }
+        .service-card-content h3 { 
+            font-family: var(--font-title); 
+            font-weight: 400; 
+            font-size: 2.2rem; 
+            color: var(--preto-suave); 
+            margin-bottom: 0.75rem; 
+        }
+        .service-card-content p { margin-bottom: 1.5rem; line-height: 1.7; }
+        .service-price { 
+            font-family: var(--font-title); 
+            font-weight: 400; 
+            font-size: 2.2rem; 
+            color: var(--verde-escuro); 
+            display: block; 
+        }
+
+        /* ===== SESSÃO DE BARBEIROS ===== */
+        .barbers-grid { display: grid; gap: 2.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .barber-card {
+            background-color: var(--branco); border-radius: 8px; box-shadow: 0 4px 25px rgba(0,0,0,0.07);
+            text-align: center; padding: 2.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .barber-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .barber-card img {
+            width: 160px; height: 160px; border-radius: 50%; object-fit: cover;
+            margin: 0 auto 2rem auto; border: 6px solid var(--cinza-fundo);
+        }
+        .barber-card h3 {
+            font-family: var(--font-title);
+            font-weight: 400; 
+            font-size: 2.5rem;
+            color: var(--preto-suave); margin-bottom: 0.5rem;
+        }
+        .barber-card p {
+            font-family: var(--font-body); font-weight:700; font-size: 1rem; text-transform:uppercase; letter-spacing: 1px;
+            color: var(--verde-escuro);
+        }
+        
+        /* ===== GALERIA ===== */
+        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        @media (min-width: 768px) { .gallery-grid { grid-template-columns: repeat(4, 1fr); } }
+        .gallery-item { overflow: hidden; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .gallery-item:hover img { transform: scale(1.05); }
+
+        /* ===== HORÁRIO ===== */
+        .schedule-section {
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1621605815971-fbc333ab5379?q=80&w=1964&auto=format&fit=crop');
+            background-size: cover; background-position: center; background-attachment: fixed; color: var(--branco);
+        }
+        .schedule-section .section-title { color: var(--branco); }
+        .schedule-box { background-color: rgba(0,0,0,0.5); max-width: 600px; margin: 0 auto; padding: 3rem; border-radius: 8px; }
+        .schedule-item {
+            display: flex; justify-content: space-between; padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            font-family: var(--font-body); font-size: 1.2rem; font-weight:700; text-transform:uppercase; letter-spacing: 1px;
+        }
+        .schedule-item:last-child { border-bottom: none; }
+        
+        /* ===== FORMULÁRIO ===== */
+        .form-container { max-width: 700px; margin: 0 auto; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label {
+            display: block; margin-bottom: 0.75rem; color: var(--preto-suave);
+            font-family: var(--font-body); font-weight:700; font-size: 1rem; text-transform:uppercase; letter-spacing: 1px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 1rem; border-radius: 8px;
+            border: 1px solid #dee2e6; font-family: var(--font-body); font-size: 1rem;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--verde-escuro); box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.2);
+        }
+        .form-group textarea { resize: vertical; min-height: 150px; }
+        .submit-button {
+            background-color: var(--verde-escuro); color: var(--branco);
+            font-family: var(--font-body); font-weight:700; font-size: 1.1rem; text-transform:uppercase; letter-spacing: 2px;
+            padding: 1.2rem 3rem; border-radius: 8px;
+            transition: background-color 0.3s ease; border: none; cursor: pointer; width: 100%;
+        }
+        .submit-button:hover { background-color: #0d4e30; }
+
+        /* ===== RODAPÉ ===== */
+        .site-footer { background-color: var(--preto-suave); color: var(--branco); padding: 6rem 0 0 0; }
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; text-align: left; }
+        @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); } }
+        .footer-col h4 {
+            font-family: var(--font-title);
+            font-weight: 400; 
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem; color: var(--branco);
+        }
+        .footer-col p { color: #ced4da; line-height: 1.8; }
+        .footer-col .logo { margin-bottom: 1rem; display: inline-block; color: var(--branco); }
+        .contact-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; color: #ced4da; }
+        .contact-item .bx { font-size: 1.5rem; color: var(--verde-claro); margin-top: 3px; }
+        .social-icons { display: flex; gap: 1.5rem; margin-top: 1.5rem; }
+        .social-icons a .bx { font-size: 2rem; transition: color 0.3s ease; color: var(--branco); }
+        .social-icons a:hover .bx { color: var(--verde-claro); }
+        .map-container iframe { border-radius: 8px; width: 100%; height: 250px; border: 0; margin-top: 1.5rem; filter: grayscale(1) invert(0.9); }
+        .footer-bottom { margin-top: 5rem; padding: 2rem 0; background-color: rgba(0,0,0,0.2); text-align: center; font-size: 0.9rem; color: #ced4da; }
+        
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <a href="https://wa.me/258SEUNUMERO?text=Olá!%20Gostaria%20de%20agendar%20um%20horário." target="_blank" class="whatsapp-float"><i class='bx bxl-whatsapp'></i></a>
+
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="#" class="logo">CAPITAL</a>
+            <nav class="nav-desktop">
+                <a href="#quemsomos">Quem Somos</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#barbeiros">Barbeiros</a>
+                <a href="#fotos">Cortes</a>
+                <a href="#localizacao">Contacto</a>
+            </nav>
+            <div class="nav-mobile-btn"><i id="menu-icon" class='bx bx-menu'></i></div>
+        </div>
+    </header>
+    
+    <nav id="mobile-menu" class="mobile-menu">
+        <a href="#quemsomos" class="mobile-menu-link">Quem Somos</a>
+        <a href="#servicos" class="mobile-menu-link">Serviços</a>
+        <a href="#barbeiros" class="mobile-menu-link">Barbeiros</a>
+        <a href="#fotos" class="mobile-menu-link">Cortes</a>
+        <a href="#localizacao" class="mobile-menu-link">Contacto</a>
+    </nav>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <h1>Corte. Estilo. Capital.</h1>
+                <p>A sua barbearia premium em Maputo, Moçambique.</p>
+                <a href="#servicos" class="hero-button">Nossos Serviços</a>
+            </div>
+        </section>
+        
+        <section id="quemsomos" class="section bg-white">
+            <div class="container content-grid">
+                <div class="content-image reveal"><img src="https://images.unsplash.com/photo-1582289297382-7c9814c16362?q=80&w=1964&auto=format&fit=crop" alt="Interior da Barbearia Capital"></div>
+                <div class="content-text reveal">
+                    <h2 class="section-title">Bem-vindo à Capital</h2>
+                    <p>Mais do que uma barbearia, somos um refúgio para o homem moderno em Maputo. Na Barbearia Capital, unimos a tradição da barbearia clássica com as tendências mais actuais para criar um estilo que é só seu.</p>
+                    <p>Nossa equipa é formada por mestres barbeiros dedicados à arte da precisão e do detalhe. Usamos os melhores produtos e oferecemos um atendimento exclusivo, porque acreditamos que cada cliente é único. Venha para uma experiência, saia com a sua melhor versão.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ALTERAÇÃO: Secção de Serviços movida para aqui -->
+        <section id="servicos" class="section bg-gray">
+            <div class="container">
+                <h2 class="section-title reveal">Serviços & Preços</h2>
+                <p class="section-subtitle reveal">Oferecemos uma gama completa de serviços para cuidar do seu visual com excelência e profissionalismo.</p>
+                <div class="services-grid">
+                    <div class="service-card-horizontal reveal"><div class="service-card-image-wrapper"><img src="https://images.unsplash.com/photo-1598555769251-16215b2e310a?q=80&w=1964&auto=format&fit=crop" alt="Corte de Cabelo Masculino" class="service-card-image"></div><div class="service-card-content"><h3>Corte Clássico</h3><p>Um corte preciso, na tesoura e máquina, alinhado ao seu estilo.</p><span class="service-price">800 MZN</span></div></div>
+                    <div class="service-card-horizontal reveal"><div class="service-card-image-wrapper"><img src="https://images.unsplash.com/photo-1632345031435-80244e733117?q=80&w=1964&auto=format&fit=crop" alt="Tratamento de Barba" class="service-card-image"></div><div class="service-card-content"><h3>Barba Terapia</h3><p>Toalha quente, navalha afiada e os melhores óleos para uma barba imponente.</p><span class="service-price">600 MZN</span></div></div>
+                    <div class="service-card-horizontal reveal"><div class="service-card-image-wrapper"><img src="https://images.unsplash.com/photo-1536520779222-3e2c3c921386?q=80&w=1974&auto=format&fit=crop" alt="Pacote de Corte e Barba" class="service-card-image"></div><div class="service-card-content"><h3>Pacote Capital</h3><p>A experiência completa. O alinhamento perfeito entre cabelo e barba.</p><span class="service-price">1.200 MZN</span></div></div>
+                    <div class="service-card-horizontal reveal"><div class="service-card-image-wrapper"><img src="https://images.unsplash.com/photo-1544991887-a8b277b03176?q=80&w=1974&auto=format&fit=crop" alt="Limpeza de Pele Masculina" class="service-card-image"></div><div class="service-card-content"><h3>Limpeza de Pele</h3><p>Tratamento facial para renovar a pele, com esfoliação e hidratação.</p><span class="service-price">950 MZN</span></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="missao" class="section bg-gray">
+            <div class="container content-grid reverse">
+                <div class="content-image reveal"><img src="https://images.unsplash.com/photo-1622288432454-2072387e492e?q=80&w=1964&auto=format&fit=crop" alt="Ferramentas de barbearia"></div>
+                <div class="content-text reveal">
+                    <h2 class="section-title">A Nossa Missão</h2>
+                    <p>A nossa missão é simples: elevar a experiência de cada cliente. Acreditamos que um bom corte de cabelo ou uma barba bem-feita pode transformar o dia de um homem. Por isso, dedicamo-nos a oferecer um serviço de excelência, num ambiente acolhedor e com uma atenção ao detalhe que faz toda a diferença, garantindo que cada visita seja memorável.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ambiente" class="section bg-white">
+            <div class="container content-grid">
+                <div class="content-image reveal"><img src="https://images.unsplash.com/photo-1567894340345-2212a4c14c33?q=80&w=1974&auto=format&fit=crop" alt="Ambiente da barbearia com clientes"></div>
+                <div class="content-text reveal">
+                    <h2 class="section-title">Um Ambiente Único</h2>
+                    <p>Criámos um espaço que vai além do serviço de barbearia. É um ponto de encontro, um local para relaxar, conversar e cuidar de si. Com uma decoração de inspiração vintage-moderna, boa música e um café sempre pronto, a Barbearia Capital é o seu clube privado no coração da cidade.</p>
+                    <p>Cada detalhe foi pensado para o seu conforto, desde as cadeiras clássicas de barbeiro até à seleção de produtos de grooming que temos disponíveis. Queremos que se sinta em casa e que saia daqui revigorado e confiante.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="barbeiros" class="section bg-white">
+            <div class="container">
+                <h2 class="section-title reveal">Os Nossos Barbeiros</h2>
+                <p class="section-subtitle reveal">Conheça a equipa de mestres barbeiros por trás da tesoura, prontos para transformar o seu estilo.</p>
+                <div class="barbers-grid">
+                    <div class="barber-card reveal"><img src="https://images.unsplash.com/photo-1621605815971-fbc333ab5379?q=80&w=1964&auto=format&fit=crop" alt="Foto do Barbeiro Miguel Santos"><h3>Miguel Santos</h3><p>Master Barber</p></div>
+                    <div class="barber-card reveal"><img src="https://images.unsplash.com/photo-1623366302587-b3285a3c9434?q=80&w=1964&auto=format&fit=crop" alt="Foto do Barbeiro Carlos Ferreira"><h3>Carlos Ferreira</h3><p>Especialista em Cortes Modernos</p></div>
+                    <div class="barber-card reveal"><img src="https://images.unsplash.com/photo-1605497213824-c598a8a47b14?q=80&w=1974&auto=format&fit=crop" alt="Foto do Barbeiro André Costa"><h3>André Costa</h3><p>Especialista em Barbas</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="fotos" class="section bg-gray">
+            <div class="container">
+                <h2 class="section-title reveal">Nossa Galeria</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1598555769251-16215b2e310a?q=80&w=1964&auto=format&fit=crop" alt="Corte de cabelo masculino"></div>
+                    <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1621605815971-fbc333ab5379?q=80&w=1964&auto=format&fit=crop" alt="Barbeiro a trabalhar"></div>
+                    <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1536520779222-3e2c3c921386?q=80&w=1974&auto=format&fit=crop" alt="Corte de cabelo moderno"></div>
+                    <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1567894340345-2212a4c14c33?q=80&w=1974&auto=format&fit=crop" alt="Ambiente da barbearia"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="horario" class="section schedule-section">
+            <div class="container">
+                <h2 class="section-title reveal">Nosso Horário</h2>
+                <div class="schedule-box reveal">
+                    <div class="schedule-item"><span>Segunda a Sexta</span><span>09:00 - 19:00</span></div>
+                    <div class="schedule-item"><span>Sábado</span><span>08:00 - 16:00</span></div>
+                    <div class="schedule-item"><span>Domingo</span><span>Fechado</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="formulario" class="section bg-white contact-form-section">
+            <div class="container">
+                <h2 class="section-title reveal">Deixe uma Mensagem</h2>
+                <p class="section-subtitle reveal">Tem alguma dúvida ou sugestão? Preencha o formulário abaixo e entraremos em contacto consigo.</p>
+                <div class="form-container reveal">
+                    <form action="#"><div class="form-group"><label for="name">Nome Completo</label><input type="text" id="name" name="name" required></div><div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" required></div><div class="form-group"><label for="message">Sua Mensagem</label><textarea id="message" name="message" required></textarea></div><button type="submit" class="submit-button">Enviar Mensagem</button></form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer id="localizacao" class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col reveal"><a href="#" class="logo">CAPITAL</a><p>A sua barbearia premium em Maputo. Unimos a tradição da barbearia clássica com as tendências mais actuais.</p><div class="social-icons"><a href="#"><i class='bx bxl-instagram'></i></a><a href="#"><i class='bx bxl-facebook-square'></i></a><a href="#"><i class='bx bxl-twitter'></i></a></div></div>
+                <div class="footer-col reveal"><h4>Contactos</h4><div class="contact-item"><i class='bx bxs-map'></i><p>Av. Julius Nyerere, 1234<br>Maputo, Moçambique</p></div><div class="contact-item"><i class='bx bxs-phone'></i><p>+258 84 123 4567</p></div><div class="contact-item"><i class='bx bxs-envelope'></i><p>contacto@barbeariacapital.co.mz</p></div></div>
+                <div class="footer-col reveal"><h4>Nossa Localização</h4><div class="map-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114881.11306383615!2d32.50158429726562!3d-25.932314500000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ee69a4a76201b1f%3A0x4642f65e23a49ed9!2sMaputo%2C%20Mozambique!5e0!3m2!1sen!2sus!4v1678886543210!5m2!1sen!2sus" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div></div>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2024 Barbearia Capital. Todos os Direitos Reservados.</p></div>
+    </footer>
+
+    <script>
+        const menuBtn=document.querySelector(".nav-mobile-btn"),menuIcon=document.getElementById("menu-icon"),mobileMenu=document.getElementById("mobile-menu"),menuLinks=document.querySelectorAll(".mobile-menu-link");const toggleMenu=()=>{const e=mobileMenu.classList.contains("is-open");mobileMenu.classList.toggle("is-open"),document.body.style.overflow=e?"auto":"hidden",menuIcon.className=e?"bx bx-menu":"bx bx-x"};menuBtn.addEventListener("click",toggleMenu),menuLinks.forEach(e=>{e.addEventListener("click",()=>{mobileMenu.classList.contains("is-open")&&toggleMenu()})});const revealElements=document.querySelectorAll(".reveal"),revealOnScroll=()=>{const e=window.innerHeight;revealElements.forEach(n=>{const o=n.getBoundingClientRect().top;o<e-100&&n.classList.add("active")})};window.addEventListener("scroll",revealOnScroll),revealOnScroll();
+    </script>
+</body>
+</html>
